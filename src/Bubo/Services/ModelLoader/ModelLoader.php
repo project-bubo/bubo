@@ -3,14 +3,15 @@
 namespace Bubo\Services;
 
 use Nette;
+use Model;
 
 class ModelLoader extends BaseService {
         private $context;
         private $connection;
-        
+
         public function __construct($context) {
                 $this->context = $context;
-                $this->connection = $context->database;  
+                $this->connection = $context->database;
         }
 
         public function loadModel($modelName, $modelNamespace = 'Model') {

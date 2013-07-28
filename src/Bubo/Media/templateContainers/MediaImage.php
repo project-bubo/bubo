@@ -35,7 +35,7 @@ class MediaImage extends Nette\Object {
         $returnText = NULL;
 
         $_lang = $lang === NULL ? $this->presenter->getFullLang() : $lang;
-        $description = \Utils\MultiValues::unserialize($this->imageData['ext']);
+        $description = \Bubo\Utils\MultiValues::unserialize($this->imageData['ext']);
 
         if ($description) {
             if (isset($description[$_lang][$name])) {

@@ -2,7 +2,7 @@
 
 namespace Bubo\Media\Components\Content\PopUp;
 
-use Utils;
+use Bubo\Utils;
 
 /**
  * Edit image titles form
