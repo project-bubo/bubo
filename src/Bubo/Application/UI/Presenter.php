@@ -2,6 +2,7 @@
 namespace Bubo\Application\UI;
 
 use Nette\Application\UI\Presenter as NettePresenter;
+use Nette\ComponentModel\IComponent;
 
 /**
  * Parent of all presenters in Bubo application.
@@ -20,14 +21,13 @@ class Presenter extends NettePresenter
     public function setup()
     {
         parent::setup();
-//        $this->nativeControlMap = array(
-//            '~^[[:alnum:]]+Form$~'  =>  'AdminModule\\Forms',
-//            '~^[[:alnum:]]+DataGrid$~'  =>  'AdminModule\\DataGrids',
-//            '~^[[:alnum:]]+ConfirmDialog$~'  =>  'AdminModule\\Dialogs',
-//        );
     }
 
-
+    /**
+     * Generic component factory
+     * @param string $name
+     * @return IComponent  the created component
+     */
     public function createComponent($name)
     {
         if (is_array($this->nativeControlMap)) {
