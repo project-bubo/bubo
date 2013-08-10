@@ -1,6 +1,8 @@
 <?php
 namespace Bubo\Application\UI;
 
+use Bubo\Localization\TranslatorAwareInterface;
+
 use Nette\Application\UI\Presenter as NettePresenter;
 use Nette\ComponentModel\IComponent;
 
@@ -18,13 +20,8 @@ class Presenter extends NettePresenter
      */
     protected $nativeControlMap = array();
 
-    public function setup()
-    {
-        parent::setup();
-    }
-
     /**
-     * Generic component factory
+     * Generic component factory method
      * @param string $name
      * @return IComponent  the created component
      */
@@ -34,11 +31,13 @@ class Presenter extends NettePresenter
 
             foreach ($this->nativeControlMap as $regexp => $classPrefix) {
                 if (preg_match($regexp, $name)) {
-                    $className = sprinf('%s\\%s', $classPrefix, ucfirst($name));
+                    $className = sprintf('%s\\%s', $classPrefix, ucfirst($name));
                     if (class_exists($className)) {
                         // TODO check signature of constructor
-                        $component = new $classname($this, $name);
-                        $component->setTranslator($this->context->translator);
+                        $component = new $className($this, $name);
+                        if ($component instanceof TranslatorAwareInterface) {
+                            $component->setTranslator($this->context->translator);
+                        }
                         return $component;
                     }
                 }
