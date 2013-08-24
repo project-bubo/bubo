@@ -31,7 +31,7 @@ class Presenter extends NettePresenter
 
             foreach ($this->nativeControlMap as $regexp => $classPrefix) {
                 if (preg_match($regexp, $name)) {
-                    $className = sprintf('%s\\%s', $classPrefix, ucfirst($name));
+                    $className = sprintf('BuboApp\\%s\\%s', $classPrefix, ucfirst($name));
                     if (class_exists($className)) {
                         // TODO check signature of constructor
                         $component = new $className($this, $name);
