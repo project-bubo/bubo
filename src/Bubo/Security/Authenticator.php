@@ -2,6 +2,7 @@
 
 namespace Bubo\Security;
 
+use Nette;
 use Nette\Security as NS;
 
 use DibiConnection;

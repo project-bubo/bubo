@@ -7,7 +7,7 @@ use Bubo;
 final class ImageDetail extends AbstractFileDetail {   
     
     public function createComponentMediaImageSettingForm($name) {
-        return new \AdminModule\Forms\MediaImageSettingForm($this, $name);
+        return new \BuboApp\AdminModule\Forms\MediaImageSettingForm($this, $name);
     }
     
     public function render() {
