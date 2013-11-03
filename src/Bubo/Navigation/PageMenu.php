@@ -2,10 +2,11 @@
 
 namespace Bubo\Navigation;
 
-use Bubo,
-    Nette\Caching\Cache;
+use Bubo\Application\UI\Control;
 
-abstract class PageMenu extends Bubo\Components\RegisteredControl {
+use Nette\Caching\Cache;
+
+abstract class PageMenu extends Control {
 
     private $renderer;
     private $labelName;

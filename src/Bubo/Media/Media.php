@@ -2,9 +2,11 @@
 
 namespace Bubo;
 
+use Bubo\Application\UI\Control;
+
 use Nette;
 
-class Media extends Components\RegisteredControl
+class Media extends Control
 {
 
     const FOLDER = 'folder',
@@ -166,10 +168,10 @@ class Media extends Components\RegisteredControl
     {
         try {
             $this->presenter->mediaManagerService->createStructure();
-            $template = $this->createNewTemplate(__DIR__ . '/templates/default.latte');
+            $template = parent::initTemplate(__DIR__ . '/templates/default.latte');
             $template->render();
         } catch (Nette\InvalidStateException $ex) {
-            $template = $this->createNewTemplate(__DIR__ . '/templates/error.latte');
+            $template = parent::initTemplate(__DIR__ . '/templates/error.latte');
             $template->message = $ex->getMessage();
             $template->render();
         }

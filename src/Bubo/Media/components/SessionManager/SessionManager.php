@@ -1,15 +1,14 @@
 <?php
-
 namespace Bubo\Media\Components;
 
-use Nette, Bubo, Nette\Utils\Html;
+use Bubo\Application\UI\Control;
 
-class SessionManager extends Bubo\Components\RegisteredControl {   
- 
+class SessionManager extends Control {
+
     const MEDIA_SESSION_NAMESPACE = 'media';
-    
+
     public $sessionSectionName = 'default';
-    
+
     public function __construct($parent, $name) {
         parent::__construct($parent, $name);
     }
@@ -17,10 +16,10 @@ class SessionManager extends Bubo\Components\RegisteredControl {
     public function createComponentPasteBin($name) {
         return new SessionManager\PasteBin($this, $name);
     }
-    
+
     public function getSessionSection() {
         $session = $this->presenter->context->session;
         return $session->getSection(self::MEDIA_SESSION_NAMESPACE . '-' . $this->sessionSectionName);
     }
-    
+
 }

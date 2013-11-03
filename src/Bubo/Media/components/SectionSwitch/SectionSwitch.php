@@ -2,10 +2,10 @@
 
 namespace Bubo\Media\Components;
 
-use Bubo;
+use Bubo\Application\UI\Control;
 
-class SectionSwitch extends Bubo\Components\RegisteredControl {   
-    
+class SectionSwitch extends Control {
+
     public function handleSwitchSection($section) {
         $this->parent->section = $section;
         $this->parent['content']->view = NULL;
@@ -14,19 +14,19 @@ class SectionSwitch extends Bubo\Components\RegisteredControl {
         $this->parent->fileId = NULL;
         $this->parent->invalidateControl();
     }
-    
+
     public function render() {
 
         $sections = $this->parent->getAllSections();
         $currentSection = $this->parent->getCurrentSection();
-        
-        $template = $this->createNewTemplate(__DIR__ . '/templates/default.latte');
-        
+
+        $template = parent::initTemplate(__DIR__ . '/templates/default.latte');
+
         $template->sections = $sections;
         $template->currentSection = $currentSection;
         $template->render();
-        
+
     }
 
-    
+
 }

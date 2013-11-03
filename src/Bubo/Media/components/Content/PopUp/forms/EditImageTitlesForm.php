@@ -2,7 +2,7 @@
 
 namespace Bubo\Media\Components\Content\PopUp;
 
-use Bubo\Utils;
+use Bubo\Utils\MultiValues;
 
 /**
  * Edit image titles form
@@ -45,7 +45,7 @@ class EditImageTitlesForm extends BaseForm
 
         $file = $this->presenter->mediaManagerService->getFile($this->parent->id);
 
-        $defaults = array('titles' => Utils\Multivalues::unserialize($file['ext']));
+        $defaults = array('titles' => MultiValues::unserialize($file['ext']));
 
         if ($defaults['titles']) $this->setDefaults((array) $defaults);
 
