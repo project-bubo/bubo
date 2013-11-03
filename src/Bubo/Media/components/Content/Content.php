@@ -1,7 +1,7 @@
 <?php
 namespace Bubo\Media\Components;
 
-use Bubo\Components\RegisteredControl;
+use Bubo\Application\UI\Control;
 use Bubo\Media\Components\Forms;
 
 use Nette;
@@ -11,7 +11,7 @@ use Nette\Utils\Html;
  * Class representing the content pane of the virtual drive
  * Layout of the content is changed by $view property
  */
-class Content extends RegisteredControl
+class Content extends Control
 {
 
     /**
@@ -459,7 +459,7 @@ class Content extends RegisteredControl
 
         if ($templateFile == 'default') {
 
-            $template = $this->createNewTemplate(__DIR__ . '/templates/loadContent.latte');
+            $template = parent::initTemplate(__DIR__ . '/templates/loadContent.latte');
             $template->cid = $this->presenter->getParam('cid');
 
             $template->folderId = $folderId;
@@ -498,7 +498,7 @@ class Content extends RegisteredControl
         }
 
         $templateFile = $this->view ?: 'default';
-        $template = $this->createNewTemplate(__DIR__ . '/templates/'.$templateFile.'.latte');
+        $template = parent::initTemplate(__DIR__ . '/templates/'.$templateFile.'.latte');
         $template->cid = $this->presenter->getParam('cid');
 
         $template->folderId = $folderId;
@@ -526,7 +526,7 @@ class Content extends RegisteredControl
     public function renderToolBar()
     {
 
-        $template = $this->createNewTemplate(__DIR__ . '/templates/toolbar.latte');
+        $template = parent::initTemplate(__DIR__ . '/templates/toolbar.latte');
         $template->showSortBar = $this->view === NULL && $this->actions !== 'gallery';
 
         $template->pasteBin = $this['pasteBin'];
@@ -803,7 +803,7 @@ class Content extends RegisteredControl
 
         $actionMap = $config['buttonMenu'][$mediaTrigger];
 
-        $template = $this->createNewTemplate(__DIR__ . '/templates/actionMenu.latte');
+        $template = parent::initTemplate(__DIR__ . '/templates/actionMenu.latte');
         $template->buttonMenu = $this->createButtonMenu($actionMap);
 
         $template->cid = $this->presenter->getParam('cid'); ///$media->cid;

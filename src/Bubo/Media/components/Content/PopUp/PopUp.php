@@ -2,12 +2,12 @@
 
 namespace Bubo\Media\Components\Content;
 
-use Bubo;
+use Bubo\Application\UI\Control;
 
 /**
  * Popup class
  */
-class PopUp extends Bubo\Components\RegisteredControl
+class PopUp extends Control
 {
 
     /**
@@ -119,42 +119,42 @@ class PopUp extends Bubo\Components\RegisteredControl
      */
     public function render()
     {
-        $template = $this->createNewTemplate(__DIR__ . '/templates/default.latte');
+        $template = parent::initTemplate(__DIR__ . '/templates/default.latte');
 
         switch ($this->template) {
             case 'confirmDeleteFolder':
-                $template = $this->createNewTemplate(__DIR__ . '/templates/deleteFolder.latte');
+                $template = parent::initTemplate(__DIR__ . '/templates/deleteFolder.latte');
                 $template->title = 'Smazat složku?';
                 $template->message = $this->message ?: 'Opravdu si přejete smazat tuto složku?';
                 break;
             case 'renameFolder':
-                $template = $this->createNewTemplate(__DIR__ . '/templates/renameFolder.latte');
+                $template = parent::initTemplate(__DIR__ . '/templates/renameFolder.latte');
                 $template->title = 'Přejmenování složky';
                 break;
             case 'confirmDeleteFile':
-                $template = $this->createNewTemplate(__DIR__ . '/templates/deleteFile.latte');
+                $template = parent::initTemplate(__DIR__ . '/templates/deleteFile.latte');
                 $template->title = 'Smazat soubor?';
                 $template->message = $this->message ?: 'Opravdu si přejete smazat tento soubor?';
                 break;
             case 'renameFile':
-                $template = $this->createNewTemplate(__DIR__ . '/templates/renameFile.latte');
+                $template = parent::initTemplate(__DIR__ . '/templates/renameFile.latte');
                 $template->title = 'Přejmenování souboru';
                 break;
             case 'renameGallery':
-                $template = $this->createNewTemplate(__DIR__ . '/templates/renameGallery.latte');
+                $template = parent::initTemplate(__DIR__ . '/templates/renameGallery.latte');
                 $template->title = 'Přejmenování galerie';
                 break;
             case 'confirmDeleteGallery':
-                $template = $this->createNewTemplate(__DIR__ . '/templates/deleteGallery.latte');
+                $template = parent::initTemplate(__DIR__ . '/templates/deleteGallery.latte');
                 $template->title = 'Smazat galerii?';
                 $template->message = $this->message ?: 'Opravdu si přejete smazat tuto galerii?';
                 break;
             case 'createGallery':
-                $template = $this->createNewTemplate(__DIR__ . '/templates/createGallery.latte');
+                $template = parent::initTemplate(__DIR__ . '/templates/createGallery.latte');
                 $template->title = 'Vytvořit gallerii';
                 break;
             case 'editTitles':
-                $template = $this->createNewTemplate(__DIR__ . '/templates/editTitles.latte');
+                $template = parent::initTemplate(__DIR__ . '/templates/editTitles.latte');
                 $media = $this->lookup('Bubo\\Media');
                 $langs = $this->presenter->langManagerService->getLangs();
                 $config = $media->getConfig();
@@ -165,7 +165,7 @@ class PopUp extends Bubo\Components\RegisteredControl
 
                 break;
             case 'insertFile':
-                $template = $this->createNewTemplate(__DIR__ . '/templates/insertFile.latte');
+                $template = parent::initTemplate(__DIR__ . '/templates/insertFile.latte');
                 $template->title = 'Generování náhledů';
                 break;
             default:
